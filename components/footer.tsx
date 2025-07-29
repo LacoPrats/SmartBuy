@@ -15,7 +15,7 @@ export default function Footer() {
         </div>
         <p className="text-center text-blue-200">Transformando la gestión de compras en ventaja competitiva</p>
         <div className="mt-6 pt-6 border-t border-blue-800 text-center text-sm text-blue-300">
-          <p>&copy; 2024 SmartBuy. Todos los derechos reservados.</p>
+          <p>&copy; 2025 SmartBuy. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>

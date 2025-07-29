@@ -11,22 +11,24 @@ export default function Hero() {
           <Image
             src="/images/sb-logo.png"
             alt="SmartBuy Logo"
-            width={800}
-            height={600}
-            className="h-56 w-auto transition-transform duration-500 hover:scale-105"
+            width={700}
+            height={500}
+            className="h-53 w-auto transition-transform duration-500 hover:scale-105"
           />
         </div>
 
         {/* Título */}
-        <h1 className="text-2xl md:text-3xl lg:text-4xl font-light max-w-3xl mx-auto leading-relaxed animate-fade-in-up delay-200">
-          Cuidamos tu compra. Acompañamos tu gestión
-        </h1>
-
-        {/* Botón con animación */}
-        <Button className="bg-blue-600 hover:bg-blue-500 text-white px-8 py-3 text-lg shadow-md hover:shadow-xl transition duration-300 animate-fade-in-up delay-300">
-          Conoce más
-        </Button>
-
+    <h1 className="text-base md:text-2xl lg:text-3xl font-light max-w-3xl mx-auto leading-relaxed animate-fade-in-up delay-200">
+  Cuidamos tu compra. Acompañamos tu gestión
+</h1>
+<Button
+  asChild
+  className="bg-blue-600 hover:bg-blue-500 text-white px-8 py-3 text-lg shadow-md hover:shadow-xl transition duration-300 animate-fade-in-up delay-300"
+>
+  <a href="#servicios">
+    Conoce más
+  </a>
+</Button>
         {/* Métricas con hover */}
         <div className="flex flex-col sm:flex-row justify-center items-center gap-6 text-blue-900 text-lg font-medium animate-fade-in-up delay-500">
           {[

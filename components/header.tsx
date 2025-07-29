@@ -14,13 +14,13 @@ export default function Header() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <Image 
-              src="/images/sb-logo.png" 
-              alt="SmartBuy Logo" 
-              width={180} 
-              height={60} 
-              className="h-12 w-auto filter brightness-0 invert" 
-            />
+          <Image 
+  src="/images/sb-logo.png" 
+  alt="SmartBuy Logo" 
+  width={120} // antes 160
+  height={30} // antes 40
+  className="h-10 w-auto filter brightness-0 invert" 
+/>
           </div>
 
           {/* Links - Desktop */}
@@ -40,9 +40,13 @@ export default function Header() {
           </nav>
 
           {/* Botón Desktop */}
-          <div className="hidden md:block">
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white">Contactanos</Button>
-          </div>
+         <div className="hidden md:block">
+  <a href="#contacto">
+    <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+      Contactanos
+    </Button>
+  </a>
+</div>
 
           {/* Botón Mobile */}
           <div className="md:hidden">
