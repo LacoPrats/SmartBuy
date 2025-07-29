@@ -44,7 +44,7 @@ const industries = [
     image: '/images/papelera.jpg',
     categories: [
       { name: 'Materiales de Empaque', monto: '$3.166.666', eficiencia: '12%' },
-        { name: 'Materiales de EmpaqueMarketing y Merchandising', monto: ' $ 1.250.000,00', eficiencia: '7%' },
+        { name: 'Marketing y Merchandising', monto: ' $ 1.250.000,00', eficiencia: '7%' },
         
     ],
   },
