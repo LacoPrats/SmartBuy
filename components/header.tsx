@@ -13,14 +13,25 @@ export default function Header() {
       <div className="container mx-auto max-w-6xl px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
+          
           <div className="flex items-center">
-          <Image 
-  src="/images/sb-logo.png" 
-  alt="SmartBuy Logo" 
-  width={120} // antes 160
-  height={30} // antes 40
-  className="h-10 w-auto filter brightness-0 invert" 
-/>
+<a
+  href="#hero"
+  onClick={(e) => {
+    e.preventDefault()
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }}
+>
+  <Image 
+    src="/images/sb-logo.png" 
+    alt="SmartBuy Logo" 
+    width={160}
+    height={40}
+    className="h-10 w-auto filter brightness-0 invert" 
+  />
+</a>
+
+
           </div>
 
           {/* Links - Desktop */}
