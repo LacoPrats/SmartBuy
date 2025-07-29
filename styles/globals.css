@@ -84,6 +84,11 @@ body {
   }
 }
 
+/* 👇 Agregamos scroll suave global */
+html {
+  scroll-behavior: smooth;
+}
+
 @layer base {
   * {
     @apply border-border;
