@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
@@ -13,10 +13,10 @@ const industries = [
       { name: 'Infraestructura tecnológica (cloud, servidores, redes)', monto: '$16.666.666', eficiencia: '8%' },
       { name: 'Consultores IT / Tarifarios por perfil', monto: '$10.833.333', eficiencia: '11%' },
       { name: 'Mantenimiento y limpieza', monto: '$6.416.666', eficiencia: '19%' },
-       { name: 'Servicios de logística de valores y efectivo', monto: ' $ 19.166.666,67', eficiencia: '4%' },
-        { name: 'Servicios de seguridad física y electrónica', monto: ' $ 12.500.000,00', eficiencia: '9%' },
-         { name: 'Servicios de logística programa de beneficios', monto: ' $ 2.916.666,67', eficiencia: '14%' },
-          { name: 'Servicio de Catering', monto: ' $ 2.833.333,33', eficiencia: '13%' },
+      { name: 'Servicios de logística de valores y efectivo', monto: ' $ 19.166.666,67', eficiencia: '4%' },
+      { name: 'Servicios de seguridad física y electrónica', monto: ' $ 12.500.000,00', eficiencia: '9%' },
+      { name: 'Servicios de logística programa de beneficios', monto: ' $ 2.916.666,67', eficiencia: '14%' },
+      { name: 'Servicio de Catering', monto: ' $ 2.833.333,33', eficiencia: '13%' },
     ],
   },
   {
@@ -25,8 +25,8 @@ const industries = [
     categories: [
       { name: 'Gestión de residuos industriales', monto: '$1.666.666', eficiencia: '6%' },
       { name: 'Instalaciones y servicios de mantenimiento ', monto: '$ 1.416.666,67', eficiencia: '9%' },
-       { name: 'Obras civiles y electromecánicas', monto: '$2.916.666', eficiencia: '7%' },
-        { name: 'Servicios de mantenimiento y operación de plantas', monto: ' $ 6.416.666,67', eficiencia: '19%' },
+      { name: 'Obras civiles y electromecánicas', monto: '$2.916.666', eficiencia: '7%' },
+      { name: 'Servicios de mantenimiento y operación de plantas', monto: ' $ 6.416.666,67', eficiencia: '19%' },
     ],
   },
   {
@@ -35,8 +35,8 @@ const industries = [
     categories: [
       { name: 'Vacunas y antiparasitarios', monto: '$2.083.333', eficiencia: '5%' },
       { name: 'Equipamiento manejo sanitario', monto: '$2.416.666', eficiencia: '9%' },
-        { name: 'Antibióticos y promotores de crecimiento', monto: ' $ 1.083.333,33', eficiencia: '8%' },
-          { name: 'Infraestructura y Equipamiento', monto: ' $ 4.166.666,67', eficiencia: '4%' },
+      { name: 'Antibióticos y promotores de crecimiento', monto: ' $ 1.083.333,33', eficiencia: '8%' },
+      { name: 'Infraestructura y Equipamiento', monto: ' $ 4.166.666,67', eficiencia: '4%' },
     ],
   },
   {
@@ -44,8 +44,7 @@ const industries = [
     image: '/images/papelera.jpg',
     categories: [
       { name: 'Materiales de Empaque', monto: '$3.166.666', eficiencia: '12%' },
-        { name: 'Marketing y Merchandising', monto: ' $ 1.250.000,00', eficiencia: '7%' },
-        
+      { name: 'Marketing y Merchandising', monto: ' $ 1.250.000,00', eficiencia: '7%' },
     ],
   },
   {
@@ -53,14 +52,26 @@ const industries = [
     image: '/images/financiera.jpg',
     categories: [
       { name: 'Equipos y maquinaria pesada', monto: '$8.333.333', eficiencia: '11%' },
-       { name: 'Seguridad e Higiene', monto: '$ 2.083.333,33', eficiencia: '8%' },
-        { name: 'Infraestructura Provisional', monto: ' $ 2.416.666,67', eficiencia: '12%' },
+      { name: 'Seguridad e Higiene', monto: '$ 2.083.333,33', eficiencia: '8%' },
+      { name: 'Infraestructura Provisional', monto: ' $ 2.416.666,67', eficiencia: '12%' },
     ],
   },
 ];
 
 export default function Industries() {
   const [selected, setSelected] = useState<string | null>(null);
+  const infoRef = useRef<HTMLDivElement | null>(null);
+
+  // Scroll al bloque con offset para no quedar pegado al borde
+  useEffect(() => {
+    if (selected && infoRef.current) {
+      setTimeout(() => {
+        const topPosition =
+          infoRef.current!.getBoundingClientRect().top + window.scrollY - 150;
+        window.scrollTo({ top: topPosition, behavior: 'smooth' });
+      }, 300); // Espera a que termine la animación
+    }
+  }, [selected]);
 
   return (
     <section className="py-20 px-4 sm:px-6 bg-blue-50 text-white flex flex-col items-center">
@@ -68,7 +79,7 @@ export default function Industries() {
         Industrias
       </h2>
 
-      {/* Contenedor responsive centrado */}
+      {/* Cards */}
       <div className="flex flex-wrap justify-center gap-6 max-w-[1600px] mx-auto">
         {industries.map((industry) => {
           const isActive = selected === industry.name;
@@ -89,22 +100,20 @@ export default function Industries() {
                   sizes="100%"
                 />
               </div>
-
               <CardContent className="py-4 px-4 text-center">
                 <h3 className="text-lg font-bold mb-1">{industry.name}</h3>
-                <p className="text-xs text-gray-600">
-                  Click para ver categorías
-                </p>
+                <p className="text-xs text-gray-600">Click para ver categorías</p>
               </CardContent>
             </Card>
           );
         })}
       </div>
 
-      {/* Detalle dinámico que expande el contenedor */}
+      {/* Info expandible */}
       <AnimatePresence>
         {selected && (
           <motion.div
+            ref={infoRef}
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -115,17 +124,16 @@ export default function Industries() {
               <h3 className="text-3xl font-bold mb-6">
                 {selected} - Categorías y métricas
               </h3>
-
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-sm border-collapse">
                   <thead>
                     <tr className="border-b border-gray-300">
                       <th className="pb-2">Categoría</th>
-                      <th className="pb-2 text-right">Monto USD</th>
-                      <th className="pb-2 text-right">Eficiencia</th>
+                      <th className="pb-2 text-center">Monto USD</th>
+                      <th className="pb-2 text-center">Eficiencia</th>
                     </tr>
                   </thead>
-                <tbody>
+<tbody>
   {industries
     .find((ind) => ind.name === selected)
     ?.categories.map((cat, i) => (
@@ -134,14 +142,15 @@ export default function Industries() {
         className="border-b border-gray-200 hover:bg-gray-100 transition"
       >
         <td className="py-2 pr-2">{cat.name}</td>
-        <td className="py-2 text-right text-black font-medium whitespace-nowrap">
+        <td className="py-2 text-center text-black font-medium whitespace-nowrap px-4 sm:px-8">
           {cat.monto.replace(/\s+/g, ' ').trim()}
         </td>
-        <td className="py-2 text-right">{cat.eficiencia}</td>
+        <td className="py-2 text-center px-4 sm:px-8">
+          {cat.eficiencia}
+        </td>
       </tr>
     ))}
 </tbody>
-
                 </table>
               </div>
             </div>

@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export', // 🔹 Esto genera la carpeta /out automáticamente
   eslint: {
     ignoreDuringBuilds: true,
   },
