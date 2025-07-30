@@ -102,7 +102,7 @@ export default function Industries() {
               </div>
               <CardContent className="py-4 px-4 text-center">
                 <h3 className="text-lg font-bold mb-1">{industry.name}</h3>
-                <p className="text-xs text-gray-600">Click para ver categorías</p>
+                <p className="text-xs text-gray-600">Click para más información</p>
               </CardContent>
             </Card>
           );
