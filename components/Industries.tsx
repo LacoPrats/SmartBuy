@@ -62,14 +62,12 @@ export default function Industries() {
   const [selected, setSelected] = useState<string | null>(null);
   const infoRef = useRef<HTMLDivElement | null>(null);
 
-  // Scroll al bloque con offset para no quedar pegado al borde
   useEffect(() => {
     if (selected && infoRef.current) {
       setTimeout(() => {
-        const topPosition =
-          infoRef.current!.getBoundingClientRect().top + window.scrollY - 150;
+        const topPosition = infoRef.current!.getBoundingClientRect().top + window.scrollY - 150;
         window.scrollTo({ top: topPosition, behavior: 'smooth' });
-      }, 300); // Espera a que termine la animación
+      }, 300);
     }
   }, [selected]);
 
@@ -98,6 +96,7 @@ export default function Industries() {
                   fill
                   className="object-cover"
                   sizes="100%"
+                  unoptimized
                 />
               </div>
               <CardContent className="py-4 px-4 text-center">
@@ -133,24 +132,22 @@ export default function Industries() {
                       <th className="pb-2 text-center">Eficiencia</th>
                     </tr>
                   </thead>
-<tbody>
-  {industries
-    .find((ind) => ind.name === selected)
-    ?.categories.map((cat, i) => (
-      <tr
-        key={i}
-        className="border-b border-gray-200 hover:bg-gray-100 transition"
-      >
-        <td className="py-2 pr-2">{cat.name}</td>
-        <td className="py-2 text-center text-black font-medium whitespace-nowrap px-4 sm:px-8">
-          {cat.monto.replace(/\s+/g, ' ').trim()}
-        </td>
-        <td className="py-2 text-center px-4 sm:px-8">
-          {cat.eficiencia}
-        </td>
-      </tr>
-    ))}
-</tbody>
+                  <tbody>
+                    {industries
+                      .find((ind) => ind.name === selected)
+                      ?.categories.map((cat, i) => (
+                        <tr
+                          key={i}
+                          className="border-b border-gray-200 hover:bg-gray-100 transition"
+                        >
+                          <td className="py-2 pr-2">{cat.name}</td>
+                          <td className="py-2 text-center text-black font-medium whitespace-nowrap px-4 sm:px-8">
+                            {cat.monto.replace(/\s+/g, ' ').trim()}
+                          </td>
+                          <td className="py-2 text-center px-4 sm:px-8">{cat.eficiencia}</td>
+                        </tr>
+                      ))}
+                  </tbody>
                 </table>
               </div>
             </div>

@@ -1,9 +1,9 @@
 "use client"
 
-import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
 import { Menu, X } from "lucide-react"
+import Image from "next/image"
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
@@ -12,26 +12,25 @@ export default function Header() {
     <header className="bg-blue-950 shadow-sm sticky top-0 z-50">
       <div className="container mx-auto max-w-6xl px-4 py-4">
         <div className="flex items-center justify-between">
+
           {/* Logo */}
-          
           <div className="flex items-center">
-<a
-  href="#hero"
-  onClick={(e) => {
-    e.preventDefault()
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  }}
->
-  <Image 
-    src="/images/sb-logo.png" 
-    alt="SmartBuy Logo" 
-    width={160}
-    height={40}
-    className="h-10 w-auto filter brightness-0 invert" 
-  />
-</a>
-
-
+            <a
+              href="#hero"
+              onClick={(e) => {
+                e.preventDefault()
+                window.scrollTo({ top: 0, behavior: "smooth" })
+              }}
+            >
+              <Image
+                src="/images/sb-logo.png"
+                alt="SmartBuy Logo"
+                width={160}
+                height={40}
+                className="h-10 w-auto filter brightness-0 invert"
+                unoptimized
+              />
+            </a>
           </div>
 
           {/* Links - Desktop */}
@@ -51,19 +50,19 @@ export default function Header() {
           </nav>
 
           {/* Botón Desktop */}
-         <div className="hidden md:block">
-  <a href="#contacto">
-    <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-      Contactanos
-    </Button>
-  </a>
-</div>
+          <div className="hidden md:block">
+            <a href="#contacto">
+              <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+                Contactanos
+              </Button>
+            </a>
+          </div>
 
           {/* Botón Mobile */}
           <div className="md:hidden">
-            <Button 
-              variant="ghost" 
-              size="icon" 
+            <Button
+              variant="ghost"
+              size="icon"
               onClick={() => setIsOpen(!isOpen)}
             >
               {isOpen ? <X className="text-white" /> : <Menu className="text-white" />}
